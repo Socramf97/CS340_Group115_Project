@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cast Pro Shop</title>
+</head>
+<body>
+    <header>
+        <h1>Employees</h1>
+    </header>
+    <nav>
+        <a href="index.html">Home</a> 
+        <a href="customers.html">Customers</a> 
+        <a href="employees.html">Employees</a> 
+        <a href="products.html">Products</a> 
+        <a href="sales_orders.html">Sales Orders</a>
+    </nav>
+
+    <div id="insert" style="display: block">
+        <form id="addCustomer">
+            <legend><strong>Add Employee</strong></legend>
+              <fieldset>
+                <label> Name </label> <input type="text" name="name">
+                <label> Race </label> <input type="text" name="race">
+              </fieldset>
+              <input class="btn" type="submit" id="addEmplopee" value="Add an Employee">
+              <input class="btn" type="button" value="Cancel">
+        </form> 
+    </div>
+
+    <div id="browse" style="display: block">
+        <p><strong>Browse Employees</strong></p>
+        <table border=1>
+          <tbody><tr>
+            <th></th>
+            <th></th>
+            <th>EmployeeID</th>
+            <th>Name</th>
+            <th>Race</th>
+          </tr>
+          <tr>
+            <td><a href="#">Edit</a></td>
+            <td><a href="#">Delete</a></td>
+            <td>1</td>
+            <td>Theris Shadowguard</td>
+            <td>Elf</td>
+          </tr>
+          <tr>
+            <td><a href="#">Edit</a></td>
+            <td><a href="#">Delete</a></td>
+            <td>2</td>
+            <td>Gregwyn Birchwalker</td>
+            <td>Gnome</td>
+          </tr>
+          <tr>
+            <td><a href="#">Edit</a></td> 
+            <td><a href="#">Delete</a></td>
+            <td>3</td>
+            <td>Modrug The Mad</td>
+            <td>Orc</td>
+          </tr>
+        </tbody></table>
+        <p>&nbsp;</p>
+        </div>
+
+
+</body>
+</html>
