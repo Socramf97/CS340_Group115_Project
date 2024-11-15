@@ -20,9 +20,10 @@ CREATE OR REPLACE TABLE Employees(
 
 CREATE OR REPLACE TABLE Products(
     productID INT NOT NULL UNIQUE AUTO_INCREMENT,
-    price DECIMAL(19,2) NOT NULL,
+    itemName,VARCHAR(64) NOT NULL,
     itemType VARCHAR(64) NOT NULL,
     itemRarity VARCHAR(16) NOT NULL,
+    price DECIMAL(19,2) NOT NULL,
     quantityStocked INT NOT NULL,
     PRIMARY KEY (productID)
 );
@@ -40,7 +41,7 @@ CREATE OR REPLACE TABLE SalesOrders(
 
 -- Transitional table for M:M relationship between SalesOrders and Products
 CREATE OR REPLACE TABLE OrderProducts(
-    orderProductID INT NOT NULL UNIQUE AUTO_INCREMENT,
+    orderID INT NOT NULL UNIQUE AUTO_INCREMENT,
     transactionID INT NOT NULL,
     productID INT NOT NULL,
     quantity INT NOT NULL,

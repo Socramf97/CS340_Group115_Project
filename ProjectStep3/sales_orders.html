@@ -15,14 +15,18 @@
         <a href="employees.html">Employees</a> 
         <a href="products.html">Products</a> 
         <a href="sales_orders.html">Sales Orders</a>
+        <a href="orderProducts.html">Order Products</a>
     </nav>
-
+    <p></p> <!-- SPACE -->
     <div id="insert" style="display: block">
         <form id="addSalesOrder">
             <legend><strong>Add Sale Order</strong></legend>
+            <p></p> <!-- SPACE -->
               <fieldset>
-                <label> Order Date </label> <input type="text" name="date">
-                <label> Total Price </label> <input type="text" name="price">
+                <label> Customer ID: </label> <input type="text" name="customerID">
+                <label> Employee ID: </label> <input type="text" name="employeeID">
+                <label> Order Date: </label> <input type="text" name="date">
+                <label> Total Price: </label> <input type="number" name="price">
               </fieldset>
               <input class="btn" type="submit" id="addSaleOrder" value="Add a Sale Order">
               <input class="btn" type="button" value="Cancel">
@@ -30,56 +34,50 @@
     </div>
 
     <div id="browse" style="display: block">
-        <p><strong>Browse Products</strong></p>
+        <p><strong>Browse Transactions</strong></p>
+        <div class="search">
+          <label>Search:</label>
+          <input >
+        </div>
         <table border=1>
           <tbody><tr>
-            <th></th>
-            <th></th>
+            <th>Edit</th>
             <th>Transaction ID</th>
             <th>Customer ID</th>
             <th>Employee ID</th>
             <th>Order Date</th>
-            <th>Product ID</th>
             <th>Total Price</th>
           </tr>
           <tr>
-            <td><a href="#">Edit</a></td>
-            <td><a href="#">Delete</a></td>
+            <td><a href="#">Update</a>&nbsp&nbsp&nbsp<a href="#">Delete</a></td>
             <td>1</td>
             <td>1</td>
             <td>1</td>
             <td>08-11-24</td>
-            <td>3</td>
             <td>20g</td>
           </tr>
           <tr>
-            <td><a href="#">Edit</a></td>
-            <td><a href="#">Delete</a></td>
+            <td><a href="#">Update</a>&nbsp&nbsp&nbsp<a href="#">Delete</a></td>
             <td>2</td>
             <td>1</td>
             <td>1</td>
-            <td>08-11-24</td>
-            <td>1</td>
+            <td>08-12-24</td>
             <td>30g</td>
           </tr>
           <tr>
-            <td><a href="#">Edit</a></td>
-            <td><a href="#">Delete</a></td>
+            <td><a href="#">Update</a>&nbsp&nbsp&nbsp<a href="#">Delete</a></td>
             <td>3</td>
             <td>3</td>
             <td>3</td>
             <td>09-02-24</td>
-            <td>2</td>
             <td>50g</td>
           </tr>
           <tr>
-            <td><a href="#">Edit</a></td>
-            <td><a href="#">Delete</a></td>
+            <td><a href="#">Update</a>&nbsp&nbsp&nbsp<a href="#">Delete</a></td>
             <td>4</td>
             <td>2</td>
             <td>3</td>
             <td>05-07-24</td>
-            <td>1</td>
             <td>70g</td>
           </tr>
         </tbody></table>

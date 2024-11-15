@@ -7,7 +7,7 @@
 </head>
 <body>
     <header>
-        <h1>Products</h1>
+        <h1>Order Products</h1>
     </header>
     <nav>
         <a href="index.html">Home</a> 
@@ -15,69 +15,60 @@
         <a href="employees.html">Employees</a> 
         <a href="products.html">Products</a> 
         <a href="sales_orders.html">Sales Orders</a>
+        <a href="orderProducts.html">Order Products</a>
     </nav>
-
+    <p></p> <!-- SPACE -->
     <div id="insert" style="display: block">
-        <form id="addProduct">
-            <legend><strong>Add Product</strong></legend>
-              <fieldset>
-                <label> Price </label> <input type="text" name="price">
-                <label> Item Name </label> <input type="text" name="name">
-                <label> Item Type </label> <input type="text" name="type">
-                <label> Quantity Stocked </label> <input type="text" name="quantity">
-              </fieldset>
-              <input class="btn" type="submit" id="addProduct" value="Add a Product">
-              <input class="btn" type="button" value="Cancel">
+        <form id="addOrderProduct">
+            <legend><strong>Add Products to Order</strong></legend>
+            <p></p> <!-- SPACE -->
+            <fieldset>
+                <label> Transaction ID: </label> <input type="number" name="transactionID">
+                <label> Product ID: </label> <input type="number" name="productID">
+                <label> Quantity: </label> <input type="number" name="quantity">
+            </fieldset>
+            <input class="btn" type="submit" id="addOrderProduct" value="Add Products to Order">
+            <input class="btn" type="button" value="Cancel">
         </form> 
     </div>
 
     <div id="browse" style="display: block">
-        <p><strong>Browse Products</strong></p>
-        <table border=1>
-          <tbody><tr>
-            <th></th>
-            <th></th>
-            <th>Product ID</th>
-            <th>Price</th>
-            <th>Item Name</th>
-            <th>Item Type</th>
-            <th>Item Rairity</th>
-            <th>Quantity Stocked</th>
-          </tr>
-          <tr>
-            <td><a href="#">Edit</a></td>
-            <td><a href="#">Delete</a></td>
-            <td>1</td>
-            <td>15g</td>
-            <td>Longsword </td>
-            <td>Weapon</td>
-            <td>Common</td>
-            <td>10</td>
-          </tr>
-          <tr>
-            <td><a href="#">Edit</a></td>
-            <td><a href="#">Delete</a></td>
-            <td>2</td>
-            <td>50g</td>
-            <td>Radiant Greatshield</td>
-            <td>Equipment</td>
-            <td>Rare</td>
-            <td>2</td>
-          </tr>
-          <tr>
-            <td><a href="#">Edit</a></td>
-            <td><a href="#">Delete</a></td>
-            <td>3</td>
-            <td>20g</td>
-            <td>Potion of Healing</td>
-            <td>Potion</td>
-            <td>Common</td>
-            <td>5</td>
-          </tr>
-        </tbody></table>
+        <p><strong>Browse Orders</strong></p>
+        <table border="1">
+          <thead>
+              <tr>
+                  <th>Edit</th>
+                  <th>Order ID</th>
+                  <th>Transaction ID</th>
+                  <th>Product ID</th>
+                  <th>Quantity</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                <td><a href="#">Update</a>&nbsp&nbsp&nbsp<a href="#">Delete</a></td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>3</td>
+                  <td>1</td>
+              </tr>
+              <tr>
+                <td><a href="#">Update</a>&nbsp&nbsp&nbsp<a href="#">Delete</a></td>
+                  <td>2</td>
+                  <td>1</td>
+                  <td>1</td>
+                  <td>5</td>
+              </tr>
+              <tr>
+                <td><a href="#">Update</a>&nbsp&nbsp&nbsp<a href="#">Delete</a></td>
+                  <td>3</td>
+                  <td>2</td>
+                  <td>2</td>
+                  <td>1</td>
+              </tr>
+          </tbody>
+        </table>
         <p>&nbsp;</p>
     </div>
-
-
 </body>
 </html>
