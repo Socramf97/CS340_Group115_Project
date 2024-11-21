@@ -80,6 +80,29 @@
         <p>&nbsp;</p>
     </div>
 
+    <p></p> <!-- SPACE -->
+    <div id="insert" style="display: block">
+        <form id="updateProduct">
+            <legend><strong>Update a Product</strong></legend>
+            <p></p> <!-- SPACE -->
+              <fieldset>
+                <label> Product ID: </label>  <select name="productID" id="productID">
+                  <option value="">Select Product ID</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
+                <label> Item Name: </label> <input type="text" name="name">
+                <label> Item Type: </label> <input type="text" name="type">
+                <label> Price: </label> <input type="number" name="price">
+                <label> Quantity Stocked: </label> <input type="number" name="quantity">
+              </fieldset>
+              <input class="btn" type="submit" id="addProduct" value="Update Product">
+              <input class="btn" type="button" value="Cancel">
+        </form> 
+    </div>
+
 
 </body>
 </html>

@@ -23,8 +23,20 @@
             <legend><strong>Add Products to Order</strong></legend>
             <p></p> <!-- SPACE -->
             <fieldset>
-                <label> Transaction ID: </label> <input type="number" name="transactionID">
-                <label> Product ID: </label> <input type="number" name="productID">
+                <label> Transaction ID: </label> <select name="transactionID" id="transactionID">
+                    <option value="">Select Transaction ID</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <label> Product ID: </label>  <select name="productID" id="productID">
+                    <option value="">Select Product ID</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
                 <label> Quantity: </label> <input type="number" name="quantity">
             </fieldset>
             <input class="btn" type="submit" id="addOrderProduct" value="Add Products to Order">
@@ -69,6 +81,38 @@
           </tbody>
         </table>
         <p>&nbsp;</p>
+    </div>
+    <p></p> <!-- SPACE -->
+    <div id="insert" style="display: block">
+        <form id="addOrderProduct">
+            <legend><strong>Update Order</strong></legend>
+            <p></p> <!-- SPACE -->
+            <fieldset>
+                <label> Order ID: </label> <select name="orderID" id="orderID">
+                    <option value="">Select Order ID</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+                <label> Transaction ID: </label> <select name="transactionID" id="transactionID">
+                    <option value="">Select Transaction ID</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <label> Product ID: </label>  <select name="productID" id="productID">
+                    <option value="">Select Product ID</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+                <label> Quantity: </label> <input type="number" name="quantity">
+            </fieldset>
+            <input class="btn" type="submit" id="updateOrderProduct" value="Update Order">
+            <input class="btn" type="button" value="Cancel">
+        </form> 
     </div>
 </body>
 </html>
