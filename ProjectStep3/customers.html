@@ -26,7 +26,13 @@
                 <label> Name: </label> <input type="text" name="name">
                 <label> Type: </label> <input type="text" name="type">
                 <label> Race: </label> <input type="text" name="race">
-                <label> EmployeeID:</label> <input type="text" name="employeeID">
+                <label> EmployeeID:</label> <select name="employeeID" id="employeeID">
+                  <option value="">Select Employee ID</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
               </fieldset>
               <input class="btn" type="submit" id="addCustomer" value="Add a Customer">
               <input class="btn" type="button" value="Cancel">
@@ -74,6 +80,34 @@
           </tr>
         </tbody></table>
         <p>&nbsp;</p>
+    </div>
+    <p></p><!-- SPACE -->
+    <div id="insert" style="display: block">
+        <form id="updateCustomer">
+            <legend><strong>Update a Customer</strong></legend>
+            <p></p> <!-- SPACE -->
+              <fieldset>
+                <label> Customer ID: </label> <select name="customerID" id="customerID">
+                  <option value="">Select Customer ID</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
+                <label> Name: </label> <input type="text" name="name">
+                <label> Type: </label> <input type="text" name="type">
+                <label> Race: </label> <input type="text" name="race">
+                <label> EmployeeID:</label> <select name="employeeID" id="employeeID">
+                  <option value="">Select Employee ID</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
+              </fieldset>
+              <input class="btn" type="submit" id="updateCustomer" value="Update Customer">
+              <input class="btn" type="button" value="Cancel">
+        </form> 
     </div>
 </body>
 </html>

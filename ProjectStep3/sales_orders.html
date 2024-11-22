@@ -19,19 +19,32 @@
     </nav>
     <p></p> <!-- SPACE -->
     <div id="insert" style="display: block">
-        <form id="addSalesOrder">
-            <legend><strong>Add Sale Order</strong></legend>
+      <form id="addSaleOrder">
+        <legend><strong>Add Sale Order</strong></legend>
             <p></p> <!-- SPACE -->
               <fieldset>
-                <label> Customer ID: </label> <input type="text" name="customerID">
-                <label> Employee ID: </label> <input type="text" name="employeeID">
+                <label> Customer ID: </label> <select name="customerID" id="customerID">
+                  <option value="">Select Customer ID</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
+                <label> Employee ID: </label> <select name="employeeID" id="employeeID">
+                  <option value="">Select Employee ID</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
                 <label> Order Date: </label> <input type="text" name="date">
                 <label> Total Price: </label> <input type="number" name="price">
               </fieldset>
               <input class="btn" type="submit" id="addSaleOrder" value="Add a Sale Order">
               <input class="btn" type="button" value="Cancel">
         </form> 
-    </div>
+    </div>>
+
 
     <div id="browse" style="display: block">
         <p><strong>Browse Transactions</strong></p>
@@ -83,5 +96,38 @@
         </tbody></table>
         <p>&nbsp;</p>
     </div>
+    <p></p> <!-- SPACE -->
+    <div id="insert" style="display: block">
+      <form id="updateSaleOrder">
+        <legend><strong>Update Sale Order</strong></legend>
+              <fieldset>
+                <label> Transaction ID: </label> <select name="transactionID" id="transactionID">
+                  <option value="">Select Transaction ID</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
+                <label> Customer ID: </label> <select name="customerID" id="customerID">
+                  <option value="">Select Customer ID</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
+                <label> Employee ID: </label> <select name="employeeID" id="employeeID">
+                  <option value="">Select Employee ID</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+              </select>
+                <label> Order Date: </label> <input type="text" name="date">
+                <label> Total Price: </label> <input type="number" name="price">
+              </fieldset>
+              <input class="btn" type="submit" id="addSaleOrder" value="Update Sale Order">
+              <input class="btn" type="button" value="Cancel">
+        </form> 
+    </div>>
 </body>
 </html>

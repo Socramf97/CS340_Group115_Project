@@ -1,0 +1,7 @@
+# Ignore the .env file containing sensitive information
+.env
+
+# Other  things to ignore
+node_modules/
+npm-debug.log
+.DS_Store
