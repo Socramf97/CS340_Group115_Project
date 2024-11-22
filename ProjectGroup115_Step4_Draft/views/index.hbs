@@ -1,0 +1,90 @@
+{{!-- Page Ttile and Nav Bar --}}
+<header>
+    <h1>Products</h1>
+</header>
+<nav>
+    <!--  WORK IN PROGRESS, will most likely have to change the hrefs to correct file names. -->
+    <a href="index.html">Home</a> 
+    <a href="customers.html">Customers</a> 
+    <a href="employees.html">Employees</a> 
+    <a href="products.html">Products</a> 
+    <a href="sales_orders.html">Sales Orders</a>
+    <a href="orderProducts.html">Order Products</a>
+</nav>
+<p></p> <!-- SPACE -->
+
+{{!-- Form to search by last name --}}
+<form id="search-producct-html" method='GET' action='/'>
+    <label for="input-name">Search by Item Name: </label>
+    <input type="text" name="itemName" id="input-name-html-search">
+    
+    <input type="submit">
+    <a href='/'><button>Reset</button></a>
+</form>
+
+{{!-- The Data from our Database --}}
+
+{{!-- Create a table --}}
+<table id="products-table" border=1>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.productID}}>
+            <td>{{this.productID}}</td>
+            <td>{{this.itemName}}</td>
+            <td>{{this.itemType}}</td>
+            <td>{{this.itemRarity}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.quantityStocked}}</td>
+            <td><button onclick="deleteProduct({{this.productID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="/js/delete_product.js"></script>
+
+<p></p> <!-- SPACE -->
+<form id="add-product-form-ajax">
+    <legend><strong>Add Product</strong></legend>
+    <p></p> <!-- SPACE -->
+        <fieldset>
+            <label for = "input-name"> Item Name: </label> 
+            <input type="text" id="input-name" name="itemName">
+
+            <label for="input-type"> Item Type: </label> 
+            <input type="text" id="input-type" name="itemType">
+
+            <label for="input-rarity"> Item Rarity: </label> 
+            <input type="text" id="input-rarity" name="itemRarity">
+
+            <label for= "input-price"> Price: </label> 
+            <input type="number" id="input-price" name="price">
+
+            <label for="input-quantity"> Quantity Stocked: </label> 
+            <input type="number" id="input-quantity" name="quantity">
+        </fieldset>
+        <input class="btn" type="submit" id="add-product-button" value="Add a Product">
+        <input class="btn" type="button" id="cancel-new-product-button" value="Cancel">
+</form> 
+
+<script src="/js/add_product.js"></script>
+
+
