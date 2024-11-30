@@ -10,7 +10,7 @@ INSERT INTO Customers(
 )
 VALUES
     ('Joseph Carlson', 'Adventurer', 'Human', '1'),
-    ('Emma Rose', 'Merchant', 'Elf', 'NULL'),
+    ('Emma Rose', 'Merchant', 'Elf', NULL),
     ('Grumly Rockstone', 'Miner', 'Dwarf', '2'),
     ('Grog Skullcrusher', 'Mercenary', 'Orc', '3')
 ;
@@ -52,7 +52,7 @@ VALUES
 
 
 INSERT INTO OrderProducts(
-    orderID,
+    transactionID,
     productID,
     quantity
 )
