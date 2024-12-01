@@ -28,14 +28,24 @@ function deleteProduct(itemID) {
 
 
 function deleteRow(itemID){
-
-    let table = document.getElementById("products-table");
+    let table = document.getElementById("products-tbody");
     for (let i = 0, row; row = table.rows[i]; i++) {
        //iterate through rows
        //rows would be accessed using the "row" variable assigned in the for loop
        if (table.rows[i].getAttribute("data-value") == itemID) {
             table.deleteRow(i);
+            deleteDropDownMenu(itemID);
             break;
        }
     }
+}
+
+function deleteDropDownMenu(itemID){
+  let selectMenu = document.getElementById("prodSelect");
+  for (let i = 0; i < selectMenu.length; i++){
+    if (Number(selectMenu.options[i].value) === Number(itemID)){
+      selectMenu[i].remove();
+      break;
+    } 
+  }
 }

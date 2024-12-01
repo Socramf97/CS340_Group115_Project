@@ -1,4 +1,4 @@
-{{!-- Page Ttile and Nav Bar --}}
+<!-- Page Ttile and Nav Bar -->
 <header>
     <h1>Products</h1>
 </header>
@@ -13,14 +13,20 @@
 </nav>
 <p></p> <!-- SPACE -->
 
-{{!-- Form to search by last name --}}
-<form id="search-producct-html" method='GET' action='/'>
+
+
+<!-- SEARCH FIELD -->
+{{!-- Form to search by Product Name --}}
+<form id="search-product-html" method='GET' action='/'>
     <label for="input-name">Search by Item Name: </label>
     <input type="text" name="itemName" id="input-name-html-search">
     
     <input type="submit">
     <a href='/'><button>Reset</button></a>
 </form>
+
+
+<!-- PRODUCTS TABLE -->
 
 {{!-- The Data from our Database --}}
 
@@ -43,7 +49,7 @@
     </thead>
 
     {{!-- Body section --}}
-    <tbody>
+    <tbody id="products-tbody">
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
@@ -61,6 +67,8 @@
 </table>
 <script src="/js/delete_product.js"></script>
 
+
+<!-- ADD PRODUCT FORM -->
 <p></p> <!-- SPACE -->
 <form id="add-product-form-ajax">
     <legend><strong>Add Product</strong></legend>
@@ -87,4 +95,28 @@
 
 <script src="/js/add_product.js"></script>
 
+<!-- UPDATE PRODUCT FORM -->
+<p></p> <!-- SPACE -->
+<h2>Updating A User's HomeWorld Form</h2>
+<p>To update a specific user's homeworld select their name from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
+<form id="update-product-form-ajax">
 
+    <!-- PRODUCT DROP DOWN MENU -->
+    <label for="prodSelect">Product name: </label>
+    <select name="input-prodname" id="prodSelect">
+        <option value="test">Select a Product</option>
+        {{#each data}}
+        <!-- PRODUCT INFO TO BE DISPLAYED BY USING ID -->
+        <option value="{{this.productID}}">{{this.itemName}}</option>
+        {{/each}}
+    </select>
+
+    <!-- Replace this with add product from so user can input price instead of using a drop down -->
+    <label for="input-price-update">Price: </label>
+    <input type="number" id="input-price-update" name="price">
+
+    <input type="submit">
+
+</form>
+
+<script src="/js/update_product.js"></script>

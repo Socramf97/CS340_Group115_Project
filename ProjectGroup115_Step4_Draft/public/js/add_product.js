@@ -42,6 +42,11 @@ addProductForm.addEventListener("submit", function (e) {
             // Add the new data to the table
             addRowToTable(xhttp.response);
 
+            // Add new product to the dropdown
+            let parsedData = JSON.parse(xhttp.response); // response = entire products table
+            let latestProduct = parsedData[parsedData.length - 1]; // Get the last added product
+            addDropDownMenu(latestProduct);
+
             // Clear the input fields for another transaction
             inputItemName.value = '';
             inputItemType.value = '';
@@ -65,10 +70,7 @@ addProductForm.addEventListener("submit", function (e) {
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("products-table");
-
-    // Get the location where we should insert the new row (end of table)
-    let newRowIndex = currentTable.rows.length;
+    let currentTable = document.getElementById("products-tbody");
 
     // Get a reference to the new row from the database query (last object)
     let parsedData = JSON.parse(data);
@@ -76,6 +78,7 @@ addRowToTable = (data) => {
 
     // Create a row and 4 cells
     let row = document.createElement("TR");
+    row.setAttribute("data-value", newRow.productID); // Set the data-value to the productID
     let idCell = document.createElement("TD");
     let itemNameCell = document.createElement("TD");
     let itemTypeCell = document.createElement("TD");
@@ -110,4 +113,16 @@ addRowToTable = (data) => {
     
     // Add the row to the table
     currentTable.appendChild(row);
+}
+
+function addDropDownMenu(product){
+    let selectMenu = document.getElementById("prodSelect");
+
+    // Create a new option element
+    let newOption = document.createElement("option");
+    newOption.value = product.productID; // Set the value to the product's ID
+    newOption.textContent = product.itemName; // Set the text to the product's name
+
+    // Append the new option to the dropdown menu
+    selectMenu.appendChild(newOption);
 }

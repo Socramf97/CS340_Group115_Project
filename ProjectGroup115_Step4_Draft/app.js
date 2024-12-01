@@ -26,6 +26,8 @@ app.use(express.static('public'));
 */
 
 // GET ROUTES
+
+// RETURNS SEARCH RESULTS
 app.get('/', function(req, res)
 {
     let query1;
@@ -51,6 +53,8 @@ app.get('/', function(req, res)
 })
 
 // POST ROUTES
+
+// Adds products to DB
 app.post('/add-product-ajax', function(req, res) 
 {
     
@@ -107,14 +111,13 @@ app.post('/add-product-ajax', function(req, res)
     })
 });
 
+// Deletes Product from DB
 app.delete('/delete-product-ajax/', function(req,res,next){
     let data = req.body;
     let itemID = parseInt(data.productID);
     let deleteProducts= `DELETE FROM Products WHERE productID = ?`;
-
         // Run the first query
         db.pool.query(deleteProducts, [itemID], function(error, rows, fields) {
-
         if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -122,6 +125,34 @@ app.delete('/delete-product-ajax/', function(req,res,next){
             res.sendStatus(204);
         }
     })
+});
+
+// Updates Product to DB WORK IN PROGRESS 
+app.put('/put-product-ajax', function(req,res,next){
+    console.log("PUT Request Received");
+    let data = req.body;
+    console.log("PUT Request Received with:", req.body);
+    let price = parseInt(data.price);
+    let productID = parseInt(data.productID);
+    let queryUpdateProduct = `UPDATE Products SET price = ? WHERE Products.productID = ?`;
+    let selectProduct = `SELECT * FROM Products WHERE productID = ?`;
+    // Run the 1st query
+    db.pool.query(queryUpdateProduct, [price, productID], function (error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            // Run the second query to fetch updated data
+            db.pool.query(selectProduct, [productID], function (error, rows, fields) {
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    res.json(rows[0]); // Send the updated row as a JSON object
+                }
+            });
+        }
+    });
 });
 
 /*
