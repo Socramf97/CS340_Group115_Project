@@ -1,0 +1,122 @@
+<!-- Page Ttile and Nav Bar -->
+<header>
+    <h1>Products</h1>
+</header>
+<nav>
+    <!--  WORK IN PROGRESS, will most likely have to change the hrefs to correct file names. -->
+    <a href="/">Home</a> 
+    <a href="customers.hbs">Customers</a> 
+    <a href="/employees">Employees</a> 
+    <a href="/products">Products</a> 
+    <a href="sales_orders.hbs">Sales Orders</a>
+    <a href="orderProducts.html">Order Products</a>
+</nav>
+<p></p> <!-- SPACE -->
+
+
+
+<!-- SEARCH FIELD -->
+{{!-- Form to search by Product Name --}}
+<form id="search-product-html" method='GET' action='/products'>
+    <label for="input-prodname">Search by Item Name: </label>
+    <input type="text" name="itemName" id="input-prodname-search">
+    
+    <input type="submit">
+    <a href='/products'><button>Reset</button></a>
+</form>
+
+
+<!-- PRODUCTS TABLE -->
+
+{{!-- The Data from our Database --}}
+
+{{!-- Create a table --}}
+<table id="products-table" border=1>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody id="products-tbody">
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.productID}}>
+            <td>{{this.productID}}</td>
+            <td>{{this.itemName}}</td>
+            <td>{{this.itemType}}</td>
+            <td>{{this.itemRarity}}</td>
+            <td>{{this.price}}</td>
+            <td>{{this.quantityStocked}}</td>
+            <td><button onclick="deleteProduct({{this.productID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="/js/products/delete_product.js"></script>
+
+
+<!-- ADD PRODUCT FORM -->
+<p></p> <!-- SPACE -->
+<form id="add-product-form-ajax">
+    <legend><strong>Add Product</strong></legend>
+    <p></p> <!-- SPACE -->
+        <fieldset>
+            <label for = "input-name"> Item Name: </label> 
+            <input type="text" id="input-name" name="itemName">
+
+            <label for="input-type"> Item Type: </label> 
+            <input type="text" id="input-type" name="itemType">
+
+            <label for="input-rarity"> Item Rarity: </label> 
+            <input type="text" id="input-rarity" name="itemRarity">
+
+            <label for= "input-price"> Price: </label> 
+            <input type="number" id="input-price" name="price">
+
+            <label for="input-quantity"> Quantity Stocked: </label> 
+            <input type="number" id="input-quantity" name="quantity">
+        </fieldset>
+        <input class="btn" type="submit" id="add-product-button" value="Add a Product">
+        <input class="btn" type="button" id="cancel-new-product-button" value="Cancel">
+</form> 
+
+<script src="/js/products/add_product.js"></script>
+
+<!-- UPDATE PRODUCT FORM -->
+<p></p> <!-- SPACE -->
+<h2>Updating A Product's Price Form</h2>
+<p>To update a specific product's price select their name from the drop-down menu on the left and their desired price from the right</p>
+<form id="update-product-form-ajax">
+
+    <!-- PRODUCT DROP DOWN MENU -->
+    <label for="prodSelect">Product name: </label>
+    <select name="input-prodname" id="prodSelect">
+        <option value="test">Select a Product</option>
+        {{#each data}}
+        <!-- PRODUCT INFO TO BE DISPLAYED BY USING ID -->
+        <option value="{{this.productID}}">{{this.itemName}}</option>
+        {{/each}}
+    </select>
+
+    <!-- Replace this with add product from so user can input price instead of using a drop down -->
+    <label for="input-price-update">Price: </label>
+    <input type="number" id="input-price-update" name="price">
+
+    <input type="submit">
+
+</form>
+
+<script src="/js/products/update_product.js"></script>

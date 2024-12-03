@@ -1,6 +1,12 @@
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
+CREATE OR REPLACE TABLE Employees(
+    employeeID INT NOT NULL UNIQUE AUTO_INCREMENT,
+    employeeName VARCHAR(64) NOT NULL,
+    employeeRace VARCHAR(16) NOT NULL,
+    PRIMARY KEY (employeeID)
+);
 CREATE OR REPLACE TABLE Customers(
     customerID INT NOT NULL UNIQUE AUTO_INCREMENT,
     customerName VARCHAR(64) NOT NULL,
@@ -9,13 +15,6 @@ CREATE OR REPLACE TABLE Customers(
     employeeID INT,
     PRIMARY KEY (CustomerID),
     FOREIGN KEY (employeeID) REFERENCES Employees(employeeID) ON DELETE SET NULL
-);
-
-CREATE OR REPLACE TABLE Employees(
-    employeeID INT NOT NULL UNIQUE AUTO_INCREMENT,
-    employeeName VARCHAR(64) NOT NULL,
-    employeeRace VARCHAR(16) NOT NULL,
-    PRIMARY KEY (employeeID)
 );
 
 CREATE OR REPLACE TABLE Products(

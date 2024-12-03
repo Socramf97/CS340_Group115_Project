@@ -1,7 +1,16 @@
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
+INSERT INTO Employees(
+    employeeName,
+    employeeRace
+)
 
+VALUES
+    ('Bob', 'Human'),
+    ('Carlenia', 'Elf'),
+    ('Bort Rockstone', 'Dwarf')
+;
 INSERT INTO Customers(
     customerName,
     customerType,
@@ -14,18 +23,6 @@ VALUES
     ('Grumly Rockstone', 'Miner', 'Dwarf', '2'),
     ('Grog Skullcrusher', 'Mercenary', 'Orc', '3')
 ;
-
-
-INSERT INTO Employees(
-    employeeName,
-    employeeRace
-)
-VALUES
-    ('Bob', 'Human'),
-    ('Carlenia', 'Elf'),
-    ('Bort Rockstone', 'Dwarf')
-;
-
 
 INSERT INTO Products(
     itemName,
@@ -52,7 +49,7 @@ VALUES
 
 
 INSERT INTO OrderProducts(
-    orderID,
+    transactionID,
     productID,
     quantity
 )

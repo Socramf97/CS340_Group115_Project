@@ -1,0 +1,111 @@
+<!-- Page Ttile and Nav Bar -->
+<header>
+    <h1>Employees</h1>
+</header>
+<nav>
+    <!--  WORK IN PROGRESS, will most likely have to change the hrefs to correct file names. -->
+    <a href="/">Home</a> 
+    <a href="customers.hbs">Customers</a> 
+    <a href="/employees">Employees</a> 
+    <a href="/products">Products</a> 
+    <a href="sales_orders.hbs">Sales Orders</a>
+    <a href="orderemployees.html">Order Products</a>
+</nav>
+<p></p> <!-- SPACE -->
+
+
+
+<!-- SEARCH FIELD -->
+{{!-- Form to search by Employee Name --}}
+<form id="search-employee-html" method='GET' action='/employees'>
+    <label for="input-empname">Search by Employee Name: </label>
+    <input type="text" name="employeeName" id="input-employeename-search">
+    
+    <input type="submit">
+    <a href='/employees'><button>Reset</button></a>
+</form>
+
+
+<!-- employeeS TABLE -->
+
+{{!-- The Data from our Database --}}
+
+{{!-- Create a table --}}
+<table id="employees-table" border=1>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody id="employees-tbody">
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.employeeID}}>
+            <td>{{this.employeeID}}</td>
+            <td>{{this.employeeName}}</td>
+            <td>{{this.employeeRace}}</td>
+            <td><button onclick="deleteEmploy3ee({{this.employeeID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="/js/employees/delete_employee.js"></script>
+
+
+<!-- ADD employee FORM -->
+<p></p> <!-- SPACE -->
+<form id="add-employee-form-ajax">
+    <legend><strong>Add employee</strong></legend>
+    <p></p> <!-- SPACE -->
+        <fieldset>
+            <label for = "input-empname"> Employee Name: </label> 
+            <input type="text" id="input-empname" name="employeeName">
+
+            <label for="input-race"> Employee Race: </label> 
+            <input type="text" id="input-race" name="employeeRace">
+
+        </fieldset>
+        <input class="btn" type="submit" id="add-employee-button" value="Add an employee">
+        <input class="btn" type="button" id="cancel-new-employee-button" value="Cancel">
+</form> 
+
+<script src="/js/employees/add_employee.js"></script>
+
+<!-- UPDATE employee FORM -->
+<p></p> <!-- SPACE -->
+<h2>Updating an Employee's Information Form</h2>
+<p>To update a specific employee's information select their name from the drop-down menu on the left and their desired changes on the right</p>
+<form id="update-employee-form-ajax">
+
+    <!-- employee DROP DOWN MENU -->
+    <label for="empSelect">Employee name: </label>
+    <select name="input-empname" id="empSelect">
+        <option value="test">Select an employee</option>
+        {{#each data}}
+        <!-- employee INFO TO BE DISPLAYED BY USING ID -->
+        <option value="{{this.employeeID}}">{{this.employeeName}}</option>
+        {{/each}}
+    </select>
+
+    <!-- Replace this with add employee from so user can input price instead of using a drop down -->
+    <label for="input-race-update">Race: </label>
+    <input type="text" id="input-race-update" name="race">
+
+    <input type="submit">
+
+</form>
+
+<script src="/js/employees/update_employee.js"></script>

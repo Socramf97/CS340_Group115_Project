@@ -76,7 +76,6 @@ function updateRow(data, productID){
        //rows would be accessed using the "row" variable assigned in the for loop
        if (table.rows[i].getAttribute("data-value") == productID) {
 
-        console.log('ProductID found')
 
             // Get the location of the row where we found the matching product ID
             let updateRowIndex = table.getElementsByTagName("tr")[i];
