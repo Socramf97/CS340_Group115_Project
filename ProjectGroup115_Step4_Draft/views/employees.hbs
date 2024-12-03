@@ -5,11 +5,11 @@
 <nav>
     <!--  WORK IN PROGRESS, will most likely have to change the hrefs to correct file names. -->
     <a href="/">Home</a> 
-    <a href="customers.hbs">Customers</a> 
+    <a href="/customers">Customers</a> 
     <a href="/employees">Employees</a> 
     <a href="/products">Products</a> 
-    <a href="sales_orders.hbs">Sales Orders</a>
-    <a href="orderemployees.html">Order Products</a>
+    <a href="/sales_orders">Sales Orders</a>
+    <a href="/order_products">Order Products</a>
 </nav>
 <p></p> <!-- SPACE -->
 
@@ -57,7 +57,7 @@
             <td>{{this.employeeID}}</td>
             <td>{{this.employeeName}}</td>
             <td>{{this.employeeRace}}</td>
-            <td><button onclick="deleteEmploy3ee({{this.employeeID}})">Delete</button></td>
+            <td><button onclick="deleteEmployee({{this.employeeID}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>

@@ -273,61 +273,69 @@ app.put('/put-employee-ajax', function(req,res,next){
 });
 
 /*
-    EMPLOYEES ROUTES
+    CUSTOMERS ROUTES
 */
-// GET ROUTE: RETURNS SEARCH RESULTS AND RENDERS EMPLOYEES PAGE
-app.get('/employees', function(req, res)
+
+
+// GET ROUTE: RETURNS SEARCH RESULTS AND RENDERS CUSTOMERS PAGE
+app.get('/customers', function(req, res)
 {
     let query1;
+    let employeesQuery = "SELECT * FROM Employees;";
 
-    if (req.query.employeeName === undefined)
+    if (req.query.customerName === undefined)
     {
-        query1 = "SELECT * FROM Employees;";
+        query1 = "SELECT * FROM Customers;";
     }
 
     else
     {
-        query1 = `SELECT * FROM Employees WHERE employeeName LIKE "${req.query.employeeName}%"`
+        query1 = `SELECT * FROM Customers WHERE customerName LIKE "${req.query.customerName}%"`
+    }
+
+    db.pool.query(employeesQuery, function(employeesError, employeesRows, employeesFields) {
+    if (employeesError) {
+        console.error("Error fetching employees:", employeesError);
+        res.sendStatus(500);
+        return;
     }
 
      // Run the 1st query
      db.pool.query(query1, function(error, rows, fields){
         
-        // Save the Employees
-        let employees = rows;
+        // Save the customers
+        let customers = rows;
 
-        return res.render('employees', {data: employees});
-    })
+        return res.render('customers', {
+            data: customers,
+            employees: employeesRows
+        });
+     })
+  });     
 })
 
 // POST ROUTES
 
-// Adds employee to DB
-app.post('/add-employee-ajax', function(req, res) 
+// Adds customer to DB
+app.post('/add-customer-ajax', function(req, res) 
 {
     
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
-    /* NOT NEEDED FOR EMPLOYEES SINCE NULL IS NOT ALLOWED, keeping because we will need it for SalesOrders
-
     /// Capture NULL values
-    let homeworld = parseInt(data.homeworld);
-    if (isNaN(homeworld))
-    {
-        homeworld = 'NULL'
-    }
-
-    let age = parseInt(data.age);
-    if (isNaN(age))
-    {
-        age = 'NULL'
-    }
+    let employeeID = parseInt(data.employeeID);
+    // OPTIONAL FIX IN CASE NaN doesn't work
+    //if (selectedEmployeeID === "") {
+    //selectedEmployeeID = null;
     
-    */
+    if (isNaN(employeeID))     
+    {
+        employeeID = 'NULL'
+    }
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Employees (employeeName, employeeRace) VALUES ('${data.employeeName}', '${data.employeeRace}')`;
+    query1 = `INSERT INTO Customers (customerName, customerType, customerRace, employeeID) VALUES ('${data.customerName}', '${data.customerType}', '${data.customerRace}', ${data.employeeID})`;
     db.pool.query(query1, function(error, rows, fields){ 
 
         // Check to see if there was an error
@@ -339,8 +347,8 @@ app.post('/add-employee-ajax', function(req, res)
         }
         else
         {
-            // If there was no error, perform a SELECT * on Employees
-            query2 = `SELECT * FROM Employees;`;
+            // If there was no error, perform a SELECT * on Customers to display updated table
+            query2 = `SELECT * FROM Customers;`;
             db.pool.query(query2, function(error, rows, fields){
 
                 // If there was an error on the second query, send a 400
@@ -361,13 +369,13 @@ app.post('/add-employee-ajax', function(req, res)
 });
 
 
-// Deletes Employee from DB
-app.delete('/delete-employee-ajax/', function(req,res,next){
+// Deletes customer from DB
+app.delete('/delete-customer-ajax/', function(req,res,next){
     let data = req.body;
-    let employeeID = parseInt(data.employeeID);
-    let deleteEmployee= `DELETE FROM Employees WHERE employeeID = ?`;
+    let customerID = parseInt(data.customerID);
+    let deleteCustomer= `DELETE FROM Customers WHERE customerID = ?`;
         // Run the first query
-        db.pool.query(deleteEmployee, [employeeID], function(error, rows, fields) {
+        db.pool.query(deleteCustomer, [customerID], function(error, rows, fields) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
@@ -377,22 +385,22 @@ app.delete('/delete-employee-ajax/', function(req,res,next){
     })
 });
 
-// Updates Employee to DB
-app.put('/put-employee-ajax', function(req,res,next){
+// Updates customer to DB
+app.put('/put-customer-ajax', function(req,res,next){
     let data = req.body;
     console.log("PUT Request Received with:", req.body);
-    let employeeRace = data.employeeRace;
-    let employeeID = parseInt(data.employeeID);
-    let queryUpdateEmployee = `UPDATE Employees SET employeeRace = ? WHERE Employees.employeeID = ?`;
-    let selectEmployee = `SELECT * FROM Employees WHERE employeeID = ?`;
+    let customerType = data.customerType;
+    let customerID = parseInt(data.customerID);
+    let queryUpdateCustomer = `UPDATE Customers SET customerType = ? WHERE Customers.customerID = ?`;
+    let selectCustomer = `SELECT * FROM Customers WHERE customerID = ?`;
     // Run the 1st query
-    db.pool.query(queryUpdateEmployee, [employeeRace, employeeID], function (error, rows, fields) {
+    db.pool.query(queryUpdateCustomer, [customerType, customerID], function (error, rows, fields) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
         } else {
             // Run the second query to fetch updated data
-            db.pool.query(selectEmployee, [employeeID], function (error, rows, fields) {
+            db.pool.query(selectCustomer, [customerID], function (error, rows, fields) {
                 if (error) {
                     console.log(error);
                     res.sendStatus(400);
@@ -403,6 +411,24 @@ app.put('/put-employee-ajax', function(req,res,next){
         }
     });
 });
+
+
+/*
+    SALES ORDERS ROUTES
+*/
+
+app.get('/sales_orders', function(req, res) {
+    res.render('sales_orders'); // Render a 'index.hbs' template for the landing page
+});
+
+/*
+    ORDER PRODUCTS ROUTES
+*/
+
+app.get('/order_products', function(req, res) {
+    res.render('order_products'); // Render a 'order_products.hbs' template for the landing page
+});
+
 
 /*
     LISTENER

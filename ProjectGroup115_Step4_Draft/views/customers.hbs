@@ -1,0 +1,126 @@
+<!-- Page Ttile and Nav Bar -->
+<header>
+    <h1>Customers</h1>
+</header>
+<nav>
+    <!--  WORK IN PROGRESS, will most likely have to change the hrefs to correct file names. -->
+    <a href="/">Home</a> 
+    <a href="/customers">Customers</a> 
+    <a href="/employees">Employees</a> 
+    <a href="/products">Products</a> 
+    <a href="/sales_orders">Sales Orders</a>
+    <a href="/order_products">Order Products</a>
+</nav>
+<p></p> <!-- SPACE -->
+
+
+
+<!-- SEARCH FIELD -->
+{{!-- Form to search by Customer Name --}}
+<form id="search-customer-html" method='GET' action='/customers'>
+    <label for="input-custname">Search by customer Name: </label>
+    <input type="text" name="customerName" id="input-customername-search">
+    
+    <input type="submit">
+    <a href='/customers'><button>Reset</button></a>
+</form>
+
+
+<!-- CUSTOMERS TABLE -->
+
+{{!-- The Data from our Database --}}
+
+{{!-- Create a table --}}
+<table id="customers-table" border=1>
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+            <th>delete</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody id="customers-tbody">
+
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
+        {{#each data}}
+        <tr data-value={{this.customerID}}>
+            <td>{{this.customerID}}</td>
+            <td>{{this.customerName}}</td>
+             <td>{{this.customerType}}</td>
+            <td>{{this.customerRace}}</td>
+            <td>{{this.employeeID}}</td>
+            <td><button onclick="deleteCustomer({{this.customerID}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+<script src="/js/customers/delete_customer.js"></script>
+
+
+<!-- ADD CUSTOMER FORM -->
+<p></p> <!-- SPACE -->
+<form id="add-customer-form-ajax">
+    <legend><strong>Add customer</strong></legend>
+    <p></p> <!-- SPACE -->
+        <fieldset>
+            <label for = "input-custname"> Customer Name: </label> 
+            <input type="text" id="input-custname" name="customerName">
+
+            <label for="input-custtype"> Customer Type: </label> 
+            <input type="text" id="input-custtype" name="customerType">
+
+            <label for="input-custrace"> Customer Race: </label> 
+            <input type="text" id="input-custrace" name="customerRace">
+
+            <!-- Employee DROP DOWN MENU REMOVE IF NOT WORKING -->
+            <label for="empSelect">Assign Employee: </label>
+            <select name="input-empname" id="empSelect">
+                <option value="test">Select an employee</option>
+                <option value="NULL">None</option> <!-- Option for no employee assignment -->
+                {{#each employee}}
+                <!-- Employee INFO TO BE DISPLAYED BY USING ID -->
+                <option value="{{this.employeeID}}">{{this.employeeName}}</option>
+                {{/each}}
+            </select>
+
+        </fieldset>
+        <input class="btn" type="submit" id="add-customer-button" value="Add a Customer">
+        <input class="btn" type="button" id="cancel-new-customer-button" value="Cancel">
+</form> 
+
+<script src="/js/customers/add_customer.js"></script>
+
+<!-- UPDATE CUSTOMER FORM -->
+<p></p> <!-- SPACE -->
+<h2>Updating a Customer's Information Form</h2>
+<p>To update a specific customer's information select their name from the drop-down menu on the left and their desired changes on the right</p>
+<form id="update-customer-form-ajax">
+
+    <!-- customer DROP DOWN MENU -->
+    <label for="custSelect">customer name: </label>
+    <select name="input-custname" id="custSelect">
+        <option value="test">Select a Customer</option>
+        {{#each data}}
+        <!-- customer INFO TO BE DISPLAYED BY USING ID -->
+        <option value="{{this.customerID}}">{{this.customerName}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-custtype-update">Type: </label>
+    <input type="text" id="input-custtype-update" name="type">
+
+    <input type="submit">
+
+</form>
+
+<script src="/js/customers/update_customer.js"></script>
